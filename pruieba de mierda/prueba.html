@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Cubo 3D con Scroll</title>
+
+    <style>
+
+@font-face {
+    font-family:"Orbitron Black";
+    src:url("fonts/orbitron-black.woff") format("woff"),
+        url("fonts/orbitron-black.ttf") format("truetype");
+    font-weight:normal;
+    font-style:normal;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+}
+html{
+    scroll-behavior: smooth;
+}
+
+nav {
+    background-color: #333333;
+    color: #fff;
+    padding: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    width: 100%;
+    margin-right: 100px;
+    padding: 0;
+    gap: 20px;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    margin-right: 10px;
+    
+}
+
+nav a:hover {
+    color: yellow;
+}
+
+nav ul li {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+h1 {
+    font-family: "Orbitron Black", sans-serif;
+
+    font-size: 70px;
+    margin-bottom: 10px;
+    color: gold;
+    padding: 10px;
+}
+
+p, a{
+    font-family: 'Rubik', sans-serif;
+    font-size: 18px;
+    font-weight: 400; /* Probá con 500 si querés que resalte un poco más */
+    color: #fff;
+    padding: 10px;
+}
+
+
+.main-image {
+
+    display: flex;
+    justify-content: center;
+    
+    
+ 
+
+}
+
+.background {
+    z-index: -1;
+    position: relative;
+    margin: 0;
+    height: 10px;
+}
+
+/* ===== CUBO CON SCROLL ===== */
+
+.seccion-cubo {
+    height: 250vh;
+    position: relative;
+}
+
+.escena-cubo {
+    width: 500px;
+    height: 500px;
+    position: sticky;
+    top: 100px;
+    margin: auto;
+    perspective: 1000px;
+}
+
+.cubo-scroll {
+    width: 500px;
+    height: 500px;
+    position: relative;
+    transform-style: preserve-3d;
+    transform-origin: center bottom;
+    will-change: transform;
+}
+
+.cubo-scroll img {
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    object-fit: cover;
+    backface-visibility: hidden;
+}
+
+.cubo-scroll img:first-child {
+    transform: translateZ(250px);
+}
+
+.cubo-scroll img:last-child {
+    transform: rotateX(-90deg) translateZ(250px);
+}
+
+    </style>
+</head>
+
+
+<body>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+
+
+    <title>Cuberty</title>
+</head>
+<body>
+    <!-- Preloader overlay: muestra la animación antes de cargar el contenido -->
+    <div id="preloader" style="position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:#fff;z-index:9999;">
+        <img id="preloader-img" src="cubo/3D/5.png" alt="Animación" width="300">
+    </div>
+    <!-- Contenido principal oculto hasta que termine la animación -->
+    <div id="content" style="visibility:hidden;">
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="productos.html">Productos</a></li>
+                <li><a href="cronometro.html">Cronómetro</a></li>
+                <li><a href="algoritmos.html">Algoritmos</a></li>
+                <li><a href="test_1.html">asdasd</a></li>
+            </ul>
+        </nav>
+
+        <div class="background">
+            <img src="cubo/hero.png" alt="Imagen de ejemplo" width="150%">
+        </div>
+
+        
+
+            <!-- Sección Principal (Hero) -->
+    <section class="main">
+        <div class="main-title">
+            <h1> TU PROXIMO MOVIMIENTO<br> <span>CON EL ÍCONO MÁS GRANDE </span> <br> DE LOS ROMPECABEZAS</h1>
+            <p>El rompecabezas más famoso del mundo te desafía. Ya seas principiante buscando resolver tu primer cubo o un speedcuber profesional, acá tenés todo para dominarlo.</p>
+        </div>
+    </section>
+
+    <div class="main-image"> <!-- Imagen principal-->
+            <img src="cubo/CuboPrincipal.png" alt="Imagen de ejemplo" width="800">
+    </div>
+
+    </div>
+    <hr>    
+     <section class="seccion-cubo">
+        <div class="escena-cubo">
+            <div class="cubo-scroll" id="cubo">
+
+                <img src="cubo/CuboPrincipal.png" alt="Cubo">
+                <img src="cubo/CuboPrincipal1.png" alt="Cubo">
+
+            </div>
+    </div>
+</section>
+ 
+
+    <script src="animacionimagen.js"></script>
+    <script src="animacionDeCubo.js"></script>
+</body>
+</html>
+<script>
+    const cubo = document.getElementById("cubo");
+    const seccion = document.querySelector(".seccion-cubo");
+
+window.addEventListener("scroll", () => {
+    const rect = seccion.getBoundingClientRect();
+
+    let progreso = -rect.top / (seccion.offsetHeight - innerHeight);
+
+    progreso = Math.max(0, Math.min(1, progreso));
+
+    cubo.style.transform = `rotateX(${progreso * 90}deg)`;
+});
+</script>
+</body>
+</html>

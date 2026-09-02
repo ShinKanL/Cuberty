@@ -1,0 +1,134 @@
+
+@font-face {
+    font-family:"Orbitron Black";
+    src:url("fonts/orbitron-black.woff") format("woff"),
+        url("fonts/orbitron-black.ttf") format("truetype");
+    font-weight:normal;
+    font-style:normal;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+}
+html{
+    scroll-behavior: smooth;
+}
+
+nav {
+    background-color: #333333;
+    color: #fff;
+    padding: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    width: 100%;
+    margin-right: 100px;
+    padding: 0;
+    gap: 20px;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    margin-right: 10px;
+    
+}
+
+nav a:hover {
+    color: yellow;
+}
+
+nav ul li {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+h1 {
+    font-family: "Orbitron Black", sans-serif;
+    
+    font-size: 100px;
+    margin-bottom: 10px;
+    color: #fff;
+    padding: 10px;
+}
+
+a{
+    font-family: 'Rubik', sans-serif;
+    font-size: 18px;
+    font-weight: 400; /* Probá con 500 si querés que resalte un poco más */
+    color: #fff;
+    padding: 10px;
+}
+
+.main-title {
+    text-align: left;
+    margin-top: 80px;
+    color: #fff;
+    margin-left: 50px;
+    
+}
+.main-image {
+
+    display: flex;
+    justify-content: center;
+    
+    
+ 
+
+}
+
+.background {
+    z-index: -1;
+    position: relative;
+    margin: 0;
+    height: 10px;
+    
+}
+
+.movimientoIMG {
+    padding: 10px;
+    margin: 30px;
+    position: absolute;
+    animation: fueraAadentro 4s ease-in-out;
+
+}
+
+@keyframes fueraAadentro {
+    from {
+        transform: translateX(-100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+
+}
+.textoIZQ {
+    font-family: 'Rubik', sans-serif;
+    position: relative;
+    color: #000;
+    font-size: 24px;
+    text-align: right;
+    right: 100px;
+    top: 100px;
+}
+
+.movimientoIMG2 {
+    margin: 30px;
+    padding: 10px;
+    position: relative;
+    top: 450px;
+    float: right;
+    
+}

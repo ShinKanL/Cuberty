@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rubik's Official | Recreación</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;0,900;1,900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0a0a0c;
+            --bg-card: #141418;
+            --accent-yellow: #ffd500;
+            --accent-red: #f02d3a;
+            --accent-blue: #0066ff;
+            --accent-green: #00b050;
+            --accent-orange: #ff6a00;
+            --text-main: #ffffff;
+            --text-muted: #a0a0ab;
+            --border-color: #26262e;
+            --font-family: 'Montserrat', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: var(--font-family);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* Top Announcement Bar */
+        .announcement-bar {
+            background: linear-gradient(90deg, var(--accent-red), var(--accent-orange), var(--accent-yellow), var(--accent-green), var(--accent-blue));
+            color: #000;
+            text-align: center;
+            padding: 6px 16px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        /* Header Navigation */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background-color: rgba(10, 10, 12, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 5%;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-badge {
+            background-color: var(--accent-yellow);
+            color: #000;
+            font-weight: 900;
+            font-size: 1.5rem;
+            padding: 4px 12px;
+            border-radius: 4px;
+            letter-spacing: -1px;
+            box-shadow: 3px 3px 0px var(--accent-red);
+            display: inline-block;
+        }
+
+        .logo-text {
+            font-weight: 900;
+            font-size: 1.4rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 28px;
+        }
+
+        nav a {
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: color 0.2s ease;
+        }
+
+        nav a:hover {
+            color: var(--accent-yellow);
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .btn-primary {
+            background-color: var(--accent-yellow);
+            color: #000;
+            padding: 10px 22px;
+            font-weight: 800;
+            border-radius: 30px;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 213, 0, 0.4);
+        }
+
+        /* Hero Section */
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 85vh;
+            align-items: center;
+            padding: 0 8%;
+            position: relative;
+            background: radial-gradient(circle at 70% 50%, rgba(255, 213, 0, 0.08) 0%, transparent 60%);
+        }
+
+        .hero-content h1 {
+            font-size: 3.8rem;
+            font-weight: 900;
+            line-height: 1.05;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .hero-content h1 span {
+            color: var(--accent-yellow);
+            display: block;
+        }
+
+        .hero-content p {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            margin-bottom: 32px;
+            max-width: 480px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: #fff;
+            border: 2px solid #fff;
+            padding: 10px 22px;
+            font-weight: 800;
+            border-radius: 30px;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .btn-secondary:hover {
+            background-color: #fff;
+            color: #000;
+        }
+
+        /* Interactive 3D Rubik's Cube Graphic */
+        .cube-container {
+            width: 300px;
+            height: 300px;
+            margin: auto;
+            perspective: 1000px;
+        }
+
+        .cube {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            animation: rotateCube 16s infinite linear;
+            cursor: grab;
+        }
+
+        .cube:active {
+            cursor: grabbing;
+        }
+
+        @keyframes rotateCube {
+            0% { transform: rotateX(-20deg) rotateY(0deg); }
+            100% { transform: rotateX(-20deg) rotateY(360deg); }
+        }
+
+        .face {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+            gap: 6px;
+            background-color: #000;
+            padding: 6px;
+            border-radius: 12px;
+            border: 2px solid #111;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+        }
+
+        .sticker {
+            border-radius: 6px;
+            box-shadow: inset 0 0 5px rgba(0,0,0,0.3);
+        }
+
+        .front  { transform: rotateY(0deg) translateZ(150px); }
+        .back   { transform: rotateY(180deg) translateZ(150px); }
+        .right  { transform: rotateY(90deg) translateZ(150px); }
+        .left   { transform: rotateY(-90deg) translateZ(150px); }
+        .top    { transform: rotateX(90deg) translateZ(150px); }
+        .bottom { transform: rotateX(-90deg) translateZ(150px); }
+
+        .c-red    .sticker { background-color: var(--accent-red); }
+        .c-orange .sticker { background-color: var(--accent-orange); }
+        .c-yellow .sticker { background-color: var(--accent-yellow); }
+        .c-white  .sticker { background-color: #ffffff; }
+        .c-blue   .sticker { background-color: var(--accent-blue); }
+        .c-green  .sticker { background-color: var(--accent-green); }
+
+        /* Solutions Section */
+        .section-solutions {
+            padding: 80px 8%;
+            background-color: #0f0f13;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            letter-spacing: 0.5px;
+        }
+
+        .section-subtitle {
+            color: var(--text-muted);
+            margin-bottom: 48px;
+            font-size: 1rem;
+        }
+
+        .solutions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 24px;
+        }
+
+        .solution-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 30px 20px;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .solution-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent-yellow);
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            margin-bottom: 16px;
+        }
+
+        .solution-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            font-weight: 800;
+        }
+
+        .solution-card p {
+            color: var(--text-muted);
+            font-size: 0.88rem;
+            margin-bottom: 20px;
+        }
+
+        /* Products Showcase */
+        .section-products {
+            padding: 80px 8%;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .product-card {
+            background-color: var(--bg-card);
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            background-color: var(--accent-red);
+            color: #fff;
+            font-size: 0.7rem;
+            font-weight: 800;
+            padding: 4px 10px;
+            border-radius: 20px;
+            text-transform: uppercase;
+        }
+
+        .product-img-box {
+            height: 220px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #1a1a20;
+            font-size: 4rem;
+        }
+
+        .product-info {
+            padding: 24px;
+        }
+
+        .product-info h3 {
+            font-size: 1.2rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .product-info p {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-bottom: 16px;
+        }
+
+        .product-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+
+        .price {
+            font-size: 1.2rem;
+            font-weight: 900;
+            color: var(--accent-yellow);
+        }
+
+        /* History Banner */
+        .history-section {
+            padding: 80px 8%;
+            background: linear-gradient(135deg, #181824 0%, #0a0a0c 100%);
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .history-content h2 {
+            font-size: 2.5rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            line-height: 1.1;
+        }
+
+        .history-content p {
+            color: var(--text-muted);
+            font-size: 1rem;
+            margin-bottom: 24px;
+        }
+
+        .history-graphic {
+            background-color: var(--bg-card);
+            border-radius: 20px;
+            padding: 40px;
+            border: 1px solid var(--border-color);
+            text-align: center;
+        }
+
+        .year-stat {
+            font-size: 5rem;
+            font-weight: 900;
+            color: var(--accent-yellow);
+            line-height: 1;
+        }
+
+        /* Newsletter */
+        .newsletter-section {
+            padding: 80px 8%;
+            text-align: center;
+            background-color: #0f0f13;
+        }
+
+        .newsletter-form {
+            display: flex;
+            max-width: 500px;
+            margin: 24px auto 0;
+            gap: 10px;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            padding: 14px 20px;
+            border-radius: 30px;
+            border: 1px solid var(--border-color);
+            background-color: var(--bg-card);
+            color: #fff;
+            font-family: inherit;
+            outline: none;
+        }
+
+        .newsletter-input:focus {
+            border-color: var(--accent-yellow);
+        }
+
+        /* Footer */
+        footer {
+            padding: 40px 8% 20px;
+            background-color: #050507;
+            border-top: 1px solid var(--border-color);
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h4 {
+            color: #fff;
+            margin-bottom: 16px;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col li {
+            margin-bottom: 8px;
+        }
+
+        .footer-col a:hover {
+            color: var(--accent-yellow);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #1a1a20;
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 900px) {
+            .hero, .history-section {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-content p {
+                margin: 0 auto 32px;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .cube-container {
+                margin-top: 40px;
+            }
+
+            nav ul {
+                display: none; /* Simplificado para demo */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Barra de anuncio superior -->
+    <div class="announcement-bar">
+        ⚡ ¡Descubrí los nuevos cubos oficiales y guías de velocidad 2026! ⚡
+    </div>
+
+    <!-- Encabezado / Navegación -->
+    <header>
+        <div class="logo-container">
+            <div class="logo-badge">RUBIK'S</div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#soluciones">Guías de Solución</a></li>
+                <li><a href="#productos">Productos</a></li>
+                <li><a href="#historia">Historia</a></li>
+                <li><a href="#comunidad">Comunidad</a></li>
+            </ul>
+        </nav>
+        <div class="header-actions">
+            <button class="btn-primary">Comprar Ahora</button>
+        </div>
+    </header>
+
+    <!-- Sección Principal (Hero) -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Hacé tu movida <span>con el ícono mundial</span></h1>
+            <p>El rompecabezas más famoso del mundo te desafía. Ya seas principiante buscando resolver tu primer cubo o un speedcuber profesional, acá tenés todo para dominarlo.</p>
+            <div class="hero-buttons">
+                <a href="#soluciones" class="btn-primary">Ver Guías de Solución</a>
+                <a href="#productos" class="btn-secondary">Explorar Cubos</a>
+            </div>
+        </div>
+
+        <!-- Render interactivo 3D del Cubo Rubik -->
+        <div class="cube-container">
+            <div class="cube" id="rubiksCube">
+                <!-- Frente (Rojo) -->
+                <div class="face front c-red">
+                    <div class="sticker"></div><div class="sticker"></div><div class="sticker"></div>
+                    <div class="sticker"></div><div class="sticker"></div><div class="sticker"></div>
+                    <div class="sticker"></div><div class="sticker"></div><div class="sticker"></div>
+                </div>
+                <!-- Atrás (Naranja) -->
+                <div class="face back c-orange">
+                    <div class="sticker"></div><div class="sticker"></div><div class="sticker"></div>
+                    <div class="sticker"></div><div class="sticker"></div><div class="sticker"></div>
+                    <div class="sticker"></div><div class="sticker"></div><div class="sticker"></div>
+                </div>
+                <!-- Derecha (Azul) -->
+                <div class="face right c-blue">
+                    <div class="sticker"></div><div class="sticker"></div><div class="sticker"></div>
+                    <div class="sticker"></div><div class="sticker"></div><div class="sticker"></div>
+                    <div class="sticker"></div><div class="sticker"></div><div class="sticker"></div>
+                </div>
+                <!-- Izquierda (Verde) -->
+                <div class="face left c-green">
+                    <div class="sticker"></div><div class="sticker"></div><div class="sticker"></div>
+                    <div class="sticker"></div><div class="sticker"></div><div class="sticker"></div>
+                    <div class="sticker"></div><div class="sticker"></div><div class="sticker"></div>
+                </div>
+                <!-- Arriba (Amarillo) -->
+                <div class="face top c-yellow">
+                    <div class="sticker"></div><div class="sticker"></div><div class="sticker"></div>
+                    <div class="sticker"></div><div class="sticker"></div><div class="sticker"></div>
+                    <div class="sticker"></div><div class="sticker"></div><div class="sticker"></div>
+                </div>
+                <!-- Abajo (Blanco) -->
+                <div class="face bottom c-white">
+                    <div class="sticker"></div><div class="sticker"></div><div class="sticker"></div>
+                    <div class="sticker"></div><div class="sticker"></div><div class="sticker"></div>
+                    <div class="sticker"></div><div class="sticker"></div><div class="sticker"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Guías de Solución -->
+    <section class="section-solutions" id="soluciones">
+        <h2 class="section-title">Encontrá la solución para vos</h2>
+        <p class="section-subtitle">Paso a paso, tutoriales oficiales para armar cualquier variante del cubo.</p>
+        
+        <div class="solutions-grid">
+            <div class="solution-card">
+                <div class="card-icon">🧊</div>
+                <h3>Rubik's 2x2</h3>
+                <p>Ideal para dar los primeros pasos en el mundo de la resolución.</p>
+                <button class="btn-secondary">Aprender 2x2</button>
+            </div>
+            <div class="solution-card">
+                <div class="card-icon">🎲</div>
+                <h3>Rubik's 3x3 Clásico</h3>
+                <p>El estándar de oro. Aprendé el método capa por capa o CFOP.</p>
+                <button class="btn-primary">Guía 3x3 Oficial</button>
+            </div>
+            <div class="solution-card">
+                <div class="card-icon">🧩</div>
+                <h3>Rubik's 4x4 Master</h3>
+                <p>Aumentá el desafío reduciendo aristas y paridades.</p>
+                <button class="btn-secondary">Aprender 4x4</button>
+            </div>
+            <div class="solution-card">
+                <div class="card-icon">✨</div>
+                <h3>Sensory & Especiales</h3>
+                <p>Guías para cubos táctiles, Impossible y ediciones de colección.</p>
+                <button class="btn-secondary">Explorar Más</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Catálogo Destacado -->
+    <section class="section-products" id="productos">
+        <h2 class="section-title">Descubrí la Línea Oficial</h2>
+        <p class="section-subtitle">Diseñados con precisión, giros suaves y la máxima durabilidad.</p>
+
+        <div class="products-grid">
+            <div class="product-card">
+                <span class="product-badge">El Clásico</span>
+                <div class="product-img-box">🟥🟨🟦</div>
+                <div class="product-info">
+                    <h3>Rubik's Original 3x3</h3>
+                    <p>Mecanismo con resortes mejorado y baldosas de plástico ultra resistentes sin stickers.</p>
+                    <div class="product-bottom">
+                        <span class="price">$14.99</span>
+                        <button class="btn-primary">Ver Producto</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <span class="product-badge" style="background-color: var(--accent-blue);">Competición</span>
+                <div class="product-img-box">⚡🧊</div>
+                <div class="product-info">
+                    <h3>Rubik's Speed Cube Pro</h3>
+                    <p>Diseñado con imanes de precisión y ajuste de tensiones para marcas récord.</p>
+                    <div class="product-bottom">
+                        <span class="price">$24.99</span>
+                        <button class="btn-primary">Ver Producto</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <span class="product-badge" style="background-color: var(--accent-orange);">Desafío</span>
+                <div class="product-img-box">🌈✨</div>
+                <div class="product-info">
+                    <h3>Rubik's Impossible</h3>
+                    <p>Baldosas lenticulares que cambian de color según el ángulo de visión. ¿Podrás resolverlo?</p>
+                    <div class="product-bottom">
+                        <span class="price">$19.99</span>
+                        <button class="btn-primary">Ver Producto</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Historia -->
+    <section class="history-section" id="historia">
+        <div class="history-content">
+            <h2>¿De dónde vino el Cubo de Rubik?</h2>
+            <p>En 1974, el profesor de arquitectura húngaro Ernő Rubik creó un prototipo de madera para explicar la geometría tridimensional a sus alumnos. No sabía que acababa de inventar el juguete más vendido de la historia humana.</p>
+            <p>Más de 50 años después, sigue inspirando a mentes de todas las edades a resolver problemas, pensar en 3D y superar sus propios límites.</p>
+            <button class="btn-secondary">Leer la Historia Completa</button>
+        </div>
+        <div class="history-graphic">
+            <div class="year-stat">1974</div>
+            <p style="text-transform: uppercase; font-weight: 800; letter-spacing: 1px; color: var(--accent-yellow); margin-top: 10px;">
+                El nacimiento de una leyenda
+            </p>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter-section" id="comunidad">
+        <h2 class="section-title">Únete a la Comunidad Rubik's</h2>
+        <p class="section-subtitle">Recibí novedades sobre torneos de Speedcubing, lanzamientos exclusivos y nuevos tutoriales.</p>
+        <form class="newsletter-form" onsubmit="event.preventDefault(); alert('¡Gracias por suscribirte!');">
+            <input type="email" class="newsletter-input" placeholder="Tu correo electrónico..." required>
+            <button type="submit" class="btn-primary">Suscribirme</button>
+        </form>
+    </section>
+
+    <!-- Pie de página -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>Rubik's</h4>
+                <ul>
+                    <li><a href="#">Sobre Nosotros</a></li>
+                    <li><a href="#">Spin Master</a></li>
+                    <li><a href="#">Prensa</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Soporte</h4>
+                <ul>
+                    <li><a href="#">Guías en PDF</a></li>
+                    <li><a href="#">Preguntas Frecuentes</a></li>
+                    <li><a href="#">Contacto</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Legales</h4>
+                <ul>
+                    <li><a href="#">Términos de Uso</a></li>
+                    <li><a href="#">Política de Privacidad</a></li>
+                    <li><a href="#">Configuración de Cookies</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Spin Master Ltd. Todos los derechos reservados. Rubik's® es una marca registrada.</p>
+        </div>
+    </footer>
+
+    <!-- Script interacción simple con el cubo -->
+    <script>
+        const cube = id = document.getElementById('rubiksCube');
+        let isDragging = false;
+        let previousMousePosition = { x: 0, y: 0 };
+        let currentRotation = { x: -20, y: 0 };
+
+        document.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            previousMousePosition = { x: e.clientX, y: e.clientY };
+            cube.style.animation = 'none'; // Detener animación automática al interactuar
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+
+            const deltaMove = {
+                x: e.clientX - previousMousePosition.x,
+                y: e.clientY - previousMousePosition.y
+            };
+
+            currentRotation.y += deltaMove.x * 0.5;
+            currentRotation.x -= deltaMove.y * 0.5;
+
+            cube.style.transform = `rotateX(${currentRotation.x}deg) rotateY(${currentRotation.y}deg)`;
+            previousMousePosition = { x: e.clientX, y: e.clientY };
+        });
+
+        document.addEventListener('mouseup', () => {
+            isDragging = false;
+        });
+    </script>
+</body>
+</html>
