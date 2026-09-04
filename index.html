@@ -1,22 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
     <link rel="stylesheet" href="style.css">
-    
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+
 
 
     <title>Cuberty</title>
 </head>
+
 <body>
+
+
     <!-- Preloader overlay: muestra la animación antes de cargar el contenido -->
     <div id="preloader" style="position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:#fff;z-index:9999;">
         <img id="preloader-img" src="cubo/3D/5.png" alt="Animación" width="300">
     </div>
+
+
     <!-- Contenido principal oculto hasta que termine la animación -->
     <div id="content" style="visibility:hidden;">
         <nav>
@@ -30,39 +38,46 @@
         </nav>
 
         <div class="background">
-            <img src="cubo/hero.png" alt="Imagen de ejemplo" width="100%" height="2750px">
+            <img src="cubo/hero.png" alt="Imagen de ejemplo" width="100%" height="2100px">
         </div>
 
         
-
-            <!-- Sección Principal (Hero) -->
-    <section class="main">
-        <div class="main-title">
-            <h1> GIRÁ <br> <span>PENSÁ  </span> <br> RESOLVÉ</h1>
+        <div class="principal">
+            <div class="main-title">
+                <h1> GIRÁ <br> <span>PENSÁ  </span> <br> RESOLVÉ</h1>
+            </div>
+            <div class="main-image"> 
+                    <img src="cubo/CuboPrincipal.png" alt="Imagen de ejemplo" width="600px">
+            </div>
         </div>
-    </section>
+        
+        <div class="parte_para_ir_a_productos">
+            <div class="imagen_izquierda">
+                <img src="cubo\imagenesQueNoSirvenParaAbsolutamenteNada\imagen_robada_de_pagina_oficial_de_cubo_rubik.jpg" alt="Imagen para nada robada de rubik">
+            </div>
+            <div class="texto_derecha">
+                <h2>DESCUBRE QUE CUBERTY ES EL CORRECTO PARA TI</h2>
+                <p> Toca el siguiente boton para poder descubrir que <br>productos tenemos</p>
+                  <a href="productos.html" class="mi-boton">Descubrir</a>
+            </div>
+        </div>
 
-    <div class="main-image"> <!-- Imagen principal-->
-            <img src="cubo/CuboPrincipal.png" alt="Imagen de ejemplo" width="700">
-    </div>
+        <div class="parte_para_ir_a_algoritmos">
+            <div class="texto_izquierda">
+                <h2>TIENES PROBLEMAS PARA ARMAR EL CUBERTY</h2>
+                <p> Toca el boton para llegar a la parte de algoritmos</p>
+                <a href="algoritmos.html" class="mi-boton2"> Ir a Algoritmos</a>
+            </div>
+            <div class="imagen_derecha">
+                <img src="cubo/imagenesQueNoSirvenParaAbsolutamenteNada/segunda_imagen_robada_de_cubos_rubiks_oficial_guion_bajo.jpg" alt="Otra imagen para nada robada de rubik">
+            </div>
+        </div>
 
-    </div>
-  
-     <div class="movimientoIMG">
-        <img src="cubo/imagenesQueNoSirvenParaAbsolutamenteNada/cubo de mierda.jpg" alt="Imagen de ejemplo" width="600">
-     </div>
+
     
-
-     <div class="textoIZQ">
-        <p>s o simplemente quieras conocer gente nueva, aquí puedes encontrar tu lugar.</p>
-     </div>
-     
-
-     <div class="movimientoIMG2">
-        <img src="cubo/imagenesQueNoSirvenParaAbsolutamenteNada/cubo de mierda.jpg" alt="Imagen de ejemplo" width="600">
-     </div>
+    </div>
     
-
+        
 
     <script src="animacionimagen.js"></script>
 </body>
