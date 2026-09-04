@@ -17,6 +17,7 @@ html{
     scroll-behavior: smooth;
 }
 
+
 nav {
     background-color: #333333;
     color: #fff;
@@ -43,7 +44,7 @@ nav a {
     color: #fff;
     text-decoration: none;
     margin-right: 10px;
-    
+    font-weight: 500;
 }
 
 nav a:hover {
@@ -67,27 +68,33 @@ h1 {
 a{
     font-family: 'Rubik', sans-serif;
     font-size: 18px;
-    font-weight: 400; /* Probá con 500 si querés que resalte un poco más */
+    font-weight: 500;
     color: #fff;
     padding: 10px;
 }
 
-.main-title {
-    text-align: left;
-    margin-top: 80px;
-    color: #fff;
-    margin-left: 50px;
-    
-}
-.main-image {
 
+.principal {
+    padding: 50px;
     display: flex;
     justify-content: center;
+    align-items: top;
+    height: 100vh;
+    gap: 20%;
     
-    
- 
+}
+
+.main-title h1{
+    color: #fff;
+
 
 }
+
+.main-image {
+    margin-right: 100px;
+}
+
+
 
 .background {
     z-index: -1;
@@ -97,38 +104,133 @@ a{
     
 }
 
-.movimientoIMG {
-    padding: 10px;
-    margin: 30px;
-    position: absolute;
-    animation: fueraAadentro 4s ease-in-out;
+ 
 
+.parte_para_ir_a_productos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+    gap: 15%;
+    margin-right: 10px;
 }
-
-@keyframes fueraAadentro {
-    from {
-        transform: translateX(-100%);
-    }
-    to {
-        transform: translateX(0);
-    }
-
-}
-.textoIZQ {
+.parte_para_ir_a_productos h2{
     font-family: 'Rubik', sans-serif;
-    position: relative;
-    color: #000;
-    font-size: 24px;
-    text-align: right;
-    right: 100px;
-    top: 100px;
-}
+    font-size: 70px;
+    font-weight: 500;
+    color:black;
 
-.movimientoIMG2 {
-    margin: 30px;
-    padding: 10px;
-    position: relative;
-    top: 450px;
-    float: right;
+    
     
 }
+.parte_para_ir_a_productos p{
+    font-family: 'Rubik', sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+    color:black;
+}
+.imagen_izquierda {
+    margin-left: 100px;
+}
+
+.texto_derecha .mi-boton {
+    background-color: #333333;
+    color: #fff;
+    padding: 20px 30px;
+    border: none;
+    border-radius: 8px;
+    font-family: 'Rubik', sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    z-index: 10;
+    
+    display: inline-block;
+    text-decoration: none;
+
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.texto_derecha .mi-boton:hover {
+    background-color: #ddff00;
+    color: #333333;
+    cursor: pointer;
+}
+.imagen_izquierda {
+  width: 1200px;        
+  height: 800px;       
+  overflow: hidden;   
+  border-radius: 8px;  
+}
+.imagen_izquierda img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;   
+  transform: scale(1.2);     
+}
+
+
+.parte_para_ir_a_algoritmos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+    gap: 15%;
+    padding-top: 30%;
+    padding-right: 10%;
+    padding-left: 10%;
+    
+
+}
+
+.parte_para_ir_a_algoritmos h2 {
+    font-family: 'Rubik', sans-serif;
+    font-size: 70px;
+    font-weight: 500;
+    color:black;
+
+}
+.parte_para_ir_a_algoritmos p {
+    font-family: 'Rubik', sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+    color:black;   
+}
+
+.imagen_derecha {
+  width: 1200px;        
+  height: 800px;       
+  overflow: hidden;   
+  border-radius: 8px;  
+}
+.imagen_derecha img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;   
+  transform: scale(1.2);     
+}
+
+.texto_izquierda .mi-boton2 {
+    background-color: #333333;
+    color: #fff;
+    padding: 20px 30px;
+    border: none;
+    border-radius: 8px;
+    font-family: 'Rubik', sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    z-index: 10;
+    
+    display: inline-block;
+    text-decoration: none;
+
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.texto_izquierda .mi-boton2:hover {
+    background-color: #ddff00;
+    color: #333333;
+    cursor: pointer;
+}
+
