@@ -29,6 +29,7 @@ nav {
     box-sizing: border-box;
 }
 
+
 nav ul {
     list-style: none;
     display: flex;
@@ -119,6 +120,7 @@ a{
     font-size: 70px;
     font-weight: 500;
     color:black;
+    padding: 3px;
 
     
     
@@ -128,6 +130,7 @@ a{
     font-size: 20px;
     font-weight: 500;
     color:black;
+    padding: 10px;
 }
 .imagen_izquierda {
     margin-left: 100px;
@@ -180,6 +183,7 @@ a{
     padding-right: 10%;
     padding-left: 10%;
     
+    
 
 }
 
@@ -188,6 +192,7 @@ a{
     font-size: 70px;
     font-weight: 500;
     color:black;
+    padding: 3px;
 
 }
 .parte_para_ir_a_algoritmos p {
@@ -195,6 +200,7 @@ a{
     font-size: 20px;
     font-weight: 500;
     color:black;   
+    padding: 10px;
 }
 
 .imagen_derecha {
@@ -234,3 +240,131 @@ a{
     cursor: pointer;
 }
 
+.loop-texto1{
+    display: flex;
+    overflow: hidden;
+    white-space: nowrap; 
+    width: 100%;
+    margin-top: 400px;
+    margin-bottom: 15px;
+}
+.loop-texto {
+    color: #333333;
+    font-family: 'Orbitron Black', sans-serif;
+    font-size: 100px;
+    margin-top: 100px;
+    text-align: right;
+    animation: mover 5s infinite linear; 
+    font-weight: 600;
+}
+
+@keyframes mover {
+    from {
+        transform: translateX(0%);
+    }
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+
+.contenedorRojo {
+
+    width: 100%;
+    background-color: #333333;
+    border-top: 15px solid red;
+    border-bottom: 15px solid red;
+    align-items: center;
+  
+
+}
+.contenedorRojo p {
+    margin-top: 20px;
+    color: #fff;
+    text-align: center;
+    font-family: 'Orbitron Black';
+    font-size: 80px;
+}
+
+.images2 {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    gap: 15px;
+    
+}
+
+.images {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 20px;
+
+    transform: scale(1);
+}
+.images:hover {
+    transform: scale(1.2);
+}
+
+
+@keyframes mover {
+    from {
+        transform: translateX(0%);
+    }
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+
+.parte_para_ir_a_cronometro {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+    gap: 10%;
+    margin-right: 10px;
+}
+
+.parte_para_ir_a_cronometro h2{
+    font-family: 'Rubik', sans-serif;
+    font-size: 70px;
+    font-weight: 500;
+    color:black;
+    padding: 3px;
+}
+.parte_para_ir_a_cronometro p{
+    font-family: 'Rubik', sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+    color:black;
+    padding: 10px;
+}
+
+
+.imagen_izquierda1 {
+  width: 700px;        
+  height: 600px;       
+  overflow: hidden;   
+  border-radius: 8px;  
+  margin-left: 20vh;
+}
+.imagen_izquierda1 img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;   
+  transform: scale(1.2);     
+}
+
+footer {
+    background-color: #333333;
+    padding: 30px;
+}
+footer p {
+    color: #fff;
+    text-align: center;
+    font-family: 'Rubik';
+    font-size: 18px;
+}
