@@ -1,4 +1,9 @@
-
+:root {
+  --color-1: #0166D8;
+  --color-2: #04BF33;
+  --color-3: #E80B0F;
+  --color-4: #FFF002;
+}
 @font-face {
     font-family:"Orbitron Black";
     src:url("fonts/orbitron-black.woff") format("woff"),
@@ -48,9 +53,10 @@ nav a {
     font-weight: 500;
 }
 
-nav a:hover {
-    color: yellow;
-}
+nav li:nth-child(4n + 1) a:hover { background-color: var(--color-1); }
+nav li:nth-child(4n + 2) a:hover { background-color: var(--color-2); }
+nav li:nth-child(4n + 3) a:hover { background-color: var(--color-3); }
+nav li:nth-child(4n + 4) a:hover { background-color: var(--color-4); }
 
 nav ul li {
     display: inline-block;
@@ -58,8 +64,7 @@ nav ul li {
 }
 
 h1 {
-    font-family: "Orbitron Black", sans-serif;
-    
+    font-family: "Orbitron Black", sans-serif;   
     font-size: 100px;
     margin-bottom: 10px;
     color: #fff;
@@ -86,9 +91,27 @@ a{
     
 }
 
-.main-title h1{
+.main-title h1 {
     color: #fff;
     font-size: 12vh;
+}
+.main-title2{
+    margin-right: 700px;
+}
+.main-title2 h1 {
+    font-size: 10vh;
+}
+
+.main-title2 span {
+    color: #fff;
+    background-color: var(--color-3);
+    padding: 5px;
+}
+
+.main-title span {
+    color: #fff;
+    background-color: var(--color-1);
+    padding: 5px;
 }
 
 .main-image {
@@ -117,9 +140,6 @@ a{
     font-weight: 500;
     color:black;
     padding: 3px;
-
-    
-    
 }
 .parte_para_ir_a_productos p{
     font-family: 'Orbitron Black', sans-serif;
@@ -130,6 +150,11 @@ a{
 }
 .imagen_izquierda {
     margin-left: 100px;
+}
+.texto_derecha span {
+    color: #fff;
+    background-color: var(--color-2);
+    padding: 5px;
 }
 
 .texto_derecha .mi-boton {
@@ -178,9 +203,6 @@ a{
     padding-top: 30%;
     padding-right: 10%;
     padding-left: 10%;
-    
-    
-
 }
 
 .parte_para_ir_a_algoritmos h2 {
@@ -189,7 +211,6 @@ a{
     font-weight: 500;
     color:black;
     padding: 3px;
-
 }
 .parte_para_ir_a_algoritmos p {
     font-family: 'Orbitron Black', sans-serif;
@@ -211,6 +232,11 @@ a{
 
   object-fit: cover;   
   transform: scale(1.2);     
+}
+.texto_izquierda span {
+    color: #fff;
+    background-color: var(--color-3);
+    padding: 5px;
 }
 
 .texto_izquierda .mi-boton2 {
@@ -285,9 +311,14 @@ a{
 .spacer {
     margin-top: 10%;
     margin-bottom: -5%;
-    margin-left: 1%;
-    z-index: -121;
-    transform: scale(2, 1);
+    width: 100%;
+    overflow: hidden;
+}
+.spacer img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    display: block;
 }
 
 .images2 {
@@ -366,21 +397,6 @@ footer {
     padding: 30px;
 }
 footer p {
-    color: #fff;
-    text-align: center;
-    font-family: 'Orbitron Black';
-    font-size: 18px;
-}
-
-.grid-productos {
-    padding: 50px;
-    display: flex;
-    height: 100vh;
-    gap: 20%;
-    background-color: #333333;
-    color: #fff;
-}
-.grid-productos {
     color: #fff;
     text-align: center;
     font-family: 'Orbitron Black';
@@ -516,14 +532,6 @@ footer p {
     margin-top: 28px;
 }
 
-kbd {
-    border: 1px solid #ccccca;
-    border-radius: 3px;
-    color: #666666;
-    font-size: 12px;
-    padding: 2px 6px;
-}
-
 .results-card {
     padding: 28px;
 }
@@ -646,21 +654,80 @@ kbd {
     }
 }
 
-.producto .imgprincipal {
-    height: 300px;
-    width: 300px;
-    object-fit: cover;
-    display:flex;
+
+.grid-productos {
+    padding: 50px;
+    display: flex;
+    height: 100vh;
+    gap: 20%;
+    background-color: #333333;
+    border: 1px solid #333333;
+    border-radius: 8px;
+    overflow: hidden;
+    color: #fff;
+    text-align: center;
+    font-family: 'Orbitron Black';
+    font-size: 18px;
 }
 
-.producto .imgsecundaria {
-    height: 300px;
-    width: 300px;
-    margin-top: -300px;
-    object-fit: cover;
-    display:flex; 
+.grid-productos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
+    padding: 20px;
 }
 
-.producto .imgsecundaria:hover {
-    visibility: hidden;
+.producto {
+    border: 1px solid #333333;
+    border-radius: 8px;
+    overflow: hidden;
+    text-align: center;
+    background: #3a3a3a;
+    transition: all 0.5s ease;
+}
+
+.imgproducto {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+}
+
+.imgproducto img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.imghover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.producto:hover .imghover {
+    opacity: 1;
+}
+
+.producto:nth-child(4n + 1):hover { background-color: var(--color-1); }
+.producto:nth-child(4n + 2):hover { background-color: var(--color-2); }
+.producto:nth-child(4n + 3):hover { background-color: var(--color-3); }
+.producto:nth-child(4n + 4):hover { background-color: var(--color-4); }
+
+.infoproducto {
+    padding: 25px;
+}
+
+.precio {
+    background-color: #777777;
+    margin-top: 30px;
+    font-size: 5vh;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.infoproducto p {
+    padding: 20px;
+    font-family: sans-serif;
 }
