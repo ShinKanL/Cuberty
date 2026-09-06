@@ -1,33 +1,63 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Cronómetro</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600&display=swap" rel="stylesheet">
+    <title>Cronómetro | Cuberty</title>
 </head>
-<body>
-    <!-- Preloader overlay: muestra la animación antes de cargar el contenido -->
-    <div id="preloader" style="position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:#fff;z-index:9999;">
-        <img id="preloader-img" src="cubo/3D/5.png" alt="Animación" width="300">
-    </div>
-    <!-- Contenido principal oculto hasta que termine la animación -->
-    <div id="content" style="visibility:hidden;">
-        <nav>
-            <ul>
-                <li><a href="index.html">Inicio</a></li>
-                <li><a href="productos.html">Productos</a></li>
-                <li><a href="cronometro.html">Cronómetro</a></li>
-                <li><a href="algoritmos.html">Algoritmos</a></li>
-            </ul>
-        </nav>
+<body class="timer-page">
+    <nav>
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="productos.html">Productos</a></li>
+            <li><a class="active" href="cronometro.html">Cronómetro</a></li>
+            <li><a href="algoritmos.html">Algoritmos</a></li>
+        </ul>
+    </nav>
 
-        <div id="main-title"> <!-- Título principal-->
+    <main class="timer-shell">
+        <header class="timer-heading">
+            <p class="eyebrow">CUBERTY / PRACTICA</p>
             <h1>Cronómetro</h1>
+            <p>Inspecciona, resuelve y registra tus tiempos.</p>
+        </header>
+
+        <div class="timer-layout">
+            <section class="timer-card" aria-labelledby="timer-display">
+                <div class="timer-status" id="timer-status" aria-live="polite">Listo para empezar</div>
+                <div class="timer-display" id="timer-display" aria-live="off">00:15.00</div>
+                <div class="timer-actions">
+                    <button class="timer-button timer-button-primary" id="start-button" type="button">Iniciar</button>
+                    <button class="timer-button timer-button-secondary" id="reset-button" type="button">Reiniciar</button>
+                </div>
+                <p class="timer-help">Presiona <kbd>Espacio</kbd> para iniciar o detener</p>
+            </section>
+
+            <aside class="results-card" aria-labelledby="results-title">
+                <div class="results-header">
+                    <h2 id="results-title">Tiempos</h2>
+                    <button class="clear-button" id="clear-button" type="button">Borrar todo</button>
+                </div>
+                <div class="stats-grid">
+                    <div><span>Promedio</span><strong id="average-time">--</strong></div>
+                    <div><span>Mejor</span><strong id="best-time">--</strong></div>
+                    <div><span>Peor</span><strong id="worst-time">--</strong></div>
+                </div>
+                <ol class="times-list" id="times-list">
+                    <li class="empty-times">Tus tiempos aparecerán aquí.</li>
+                </ol>
+            </aside>
         </div>
+    </main>
 
-    </div>
+    <footer>
+        <p>© Todos los derechos reservados a Cuberty</p>
+    </footer>
 
-    <script src="animacionimagen.js"></script>
+    <script src="cronometro.js"></script>
 </body>
 </html>
