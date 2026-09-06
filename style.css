@@ -67,7 +67,7 @@ h1 {
 }
 
 a{
-    font-family: 'Rubik', sans-serif;
+    font-family: 'Orbitron Black', sans-serif;
     font-size: 18px;
     font-weight: 500;
     color: #fff;
@@ -82,20 +82,18 @@ a{
     align-items: top;
     height: 100vh;
     gap: 20%;
+    margin: 30px;
     
 }
 
 .main-title h1{
     color: #fff;
-
-
+    font-size: 12vh;
 }
 
 .main-image {
     margin-right: 100px;
 }
-
-
 
 .background {
     z-index: -1;
@@ -104,8 +102,6 @@ a{
     height: 10px;
     
 }
-
- 
 
 .parte_para_ir_a_productos {
     display: flex;
@@ -116,7 +112,7 @@ a{
     margin-right: 10px;
 }
 .parte_para_ir_a_productos h2{
-    font-family: 'Rubik', sans-serif;
+    font-family: 'Orbitron Black', sans-serif;
     font-size: 70px;
     font-weight: 500;
     color:black;
@@ -126,7 +122,7 @@ a{
     
 }
 .parte_para_ir_a_productos p{
-    font-family: 'Rubik', sans-serif;
+    font-family: 'Orbitron Black', sans-serif;
     font-size: 20px;
     font-weight: 500;
     color:black;
@@ -142,7 +138,7 @@ a{
     padding: 20px 30px;
     border: none;
     border-radius: 8px;
-    font-family: 'Rubik', sans-serif;
+    font-family: 'Orbitron Black', sans-serif;
     font-size: 18px;
     font-weight: 500;
     z-index: 10;
@@ -188,7 +184,7 @@ a{
 }
 
 .parte_para_ir_a_algoritmos h2 {
-    font-family: 'Rubik', sans-serif;
+    font-family: 'Orbitron Black', sans-serif;
     font-size: 70px;
     font-weight: 500;
     color:black;
@@ -196,7 +192,7 @@ a{
 
 }
 .parte_para_ir_a_algoritmos p {
-    font-family: 'Rubik', sans-serif;
+    font-family: 'Orbitron Black', sans-serif;
     font-size: 20px;
     font-weight: 500;
     color:black;   
@@ -223,7 +219,7 @@ a{
     padding: 20px 30px;
     border: none;
     border-radius: 8px;
-    font-family: 'Rubik', sans-serif;
+    font-family: 'Orbitron Black', sans-serif;
     font-size: 18px;
     font-weight: 500;
     z-index: 10;
@@ -286,6 +282,14 @@ a{
     font-size: 80px;
 }
 
+.spacer {
+    margin-top: 10%;
+    margin-bottom: -5%;
+    margin-left: 1%;
+    z-index: -121;
+    transform: scale(2, 1);
+}
+
 .images2 {
     display: flex;
     text-align: center;
@@ -328,20 +332,19 @@ a{
 }
 
 .parte_para_ir_a_cronometro h2{
-    font-family: 'Rubik', sans-serif;
+    font-family: 'Orbitron Black', sans-serif;
     font-size: 70px;
     font-weight: 500;
     color:black;
     padding: 3px;
 }
 .parte_para_ir_a_cronometro p{
-    font-family: 'Rubik', sans-serif;
+    font-family: 'Orbitron Black', sans-serif;
     font-size: 20px;
     font-weight: 500;
     color:black;
     padding: 10px;
 }
-
 
 .imagen_izquierda1 {
   width: 700px;        
@@ -365,6 +368,40 @@ footer {
 footer p {
     color: #fff;
     text-align: center;
-    font-family: 'Rubik';
+    font-family: 'Orbitron Black';
     font-size: 18px;
+}
+
+.grid-productos {
+    padding: 50px;
+    display: flex;
+    height: 100vh;
+    gap: 20%;
+    background-color: #333333;
+    color: #fff;
+}
+.grid-productos {
+    color: #fff;
+    text-align: center;
+    font-family: 'Orbitron Black';
+    font-size: 18px;
+}
+
+.producto .imgprincipal {
+    height: 300px;
+    width: 300px;
+    object-fit: cover;
+    display:flex;
+}
+
+.producto .imgsecundaria {
+    height: 300px;
+    width: 300px;
+    margin-top: -300px;
+    object-fit: cover;
+    display:flex; 
+}
+
+.producto .imgsecundaria:hover {
+    visibility: hidden;
 }
